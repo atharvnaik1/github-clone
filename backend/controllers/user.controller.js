@@ -6,11 +6,11 @@ export const getUserProfileAndRepos = async (req,res) => {
 		// 60 requests per hour, 5000 requests per hour for authenticated requests
 		// https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28
 		const userRes = await fetch(`https://api.github.com/users/${username}`, 
-		// {
-		// 	headers: {
-		// 		authorization: `Bearer ${process.env.GITHUB_API_KEY}`,
-		// 	},
-		// }
+		{
+			headers: {
+				authorization: `Bearer ${process.env.GITHUB_API_KEY}`,
+			},
+		}
 		);
 
 		if (!userRes.ok) {
@@ -28,11 +28,11 @@ export const getUserProfileAndRepos = async (req,res) => {
 
 
 		const repoRes = await fetch(userProfile.repos_url, 
-		// 	{
-		// 	headers: {
-		// 		authorization: `Bearer ${process.env.GITHUB_API_KEY}`,
-		// 	},
-		// }
+			{
+			headers: {
+				authorization: `Bearer ${process.env.GITHUB_API_KEY}`,
+			},
+		}
 		);
 		if (!repoRes.ok) {
             throw new Error(`Failed to fetch user repositories: ${repoRes.status} ${repoRes.statusText}`);
