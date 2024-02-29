@@ -7,7 +7,7 @@ export const getUserProfileAndRepos = async (req,res) => {
 		// https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28
 		const userRes = await fetch(`https://api.github.com/users/${username}`, {
 			headers: {
-				authorization: `token ${process.env.GITHUB_API_KEY}`,
+				authorization: `Bearer ${process.env.GITHUB_API_KEY}`,
 			},
 		});
 
@@ -27,7 +27,7 @@ export const getUserProfileAndRepos = async (req,res) => {
 
 		const repoRes = await fetch(userProfile.repos_url, {
 			headers: {
-				authorization: `token ${process.env.GITHUB_API_KEY}`,
+				authorization: `Bearer ${process.env.GITHUB_API_KEY}`,
 			},
 		});
 		if (!repoRes.ok) {
