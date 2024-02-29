@@ -8,7 +8,7 @@ export const getUserProfileAndRepos = async (req,res) => {
 		const userRes = await fetch(`https://api.github.com/users/${username}`, 
 		{
 			headers: {
-				authorization: `Bearer ${process.env.GITHUB_API_KEY}`,
+				authorization: `Bearer ${process.env.YOUR_TOKEN}`,
 			},
 		}
 		);
@@ -30,7 +30,7 @@ export const getUserProfileAndRepos = async (req,res) => {
 		const repoRes = await fetch(userProfile.repos_url, 
 			{
 			headers: {
-				authorization: `Bearer ${process.env.GITHUB_API_KEY}`,
+				authorization: `Bearer ${process.env.YOUR_TOKEN}`,
 			},
 		}
 		);
